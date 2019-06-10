@@ -26,7 +26,6 @@ class Index extends Init
         $field = $this->request->param('field/s',true);
         $relations = array_filter($this->request->param('relations/a',[]));
         $attrs = array_filter($this->request->param('attrs/a',[]));
-
         $result = $this->service->lists($maps,$this->limit,$this->page,$order,$field,$relations,$attrs);
         return $this->response("success", $result);
     }
