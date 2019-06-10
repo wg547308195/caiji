@@ -1,0 +1,218 @@
+{include file="common/header" /}
+  <div class="content">
+    <div class="c1">
+      <div class="newcenter">
+        <p class="title">新闻中心</p>
+        <div>
+          <div class="newsImgbox">
+            <div class="slider">
+                <?php foreach($slider as $v){ ?>
+                <div class="item">
+                  <a href="<?php echo url('info/news/detail',['id'=>$v['id']]) ?>">
+                    <img src="{$v['nav_img']}" width="100%" height="100%" />
+                  </a>
+                  <p class="newsTitle"> <a href="<?php echo url('info/news/detail',['id'=>$v['id']]) ?>">{$v['title']}</a></p>
+                </div>
+                <?php } ?>
+            </div>
+          </div>
+          <div class="dym">
+            <div class="dym1">
+                <h3 class="dymTitle"> <a href="<?php echo url('info/news/detail',['id'=>$head['id']]) ?>"><?php echo strlen($head['title']) > 30 ? (mb_substr($head['title'],0,30) . '...') : $head['title']; ?></a> </h3>
+                <p><?php echo strlen($head['summary']) > 50 ? (mb_substr($head['summary'],0,50) . '...') : $head['summary']; ?><a href="<?php echo url('info/news/detail',['id'=>$head['id']]) ?>">【详情】</a></p>
+            </div>
+            <div class="dym2">
+              <h4>最新动态</h4>
+              <ul>
+                <?php foreach($newest as $v){ ?>
+                <li>&bull;&nbsp;<a href="<?php echo url('info/news/detail',['id'=>$v['id']]) ?>">{$v['title']}</a><span>{$v['release_time']}</span></li>
+                <?php } ?>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="notices">
+          <p class="title">通知公告</p>
+          <div class="nc">
+            <h4 title="{$notice['title']}"><?php echo strlen($notice['title']) > 20 ? (mb_substr($notice['title'],0,20) . '...') : $notice['title']; ?></h4>
+            <p title="{$notice['content']}"><?php echo strlen($notice['content']) > 150 ? (mb_substr($notice['content'],0,150) . '...') : $notice['content']; ?></p>
+            <span>{$notice['release_time']}</span>
+          </div>
+      </div>
+    </div>
+    <div class="c2">
+      <img src="/frontend/images/m_banner.png" alt="">
+    </div>
+    <div class="c3">
+      <?php 
+         if($open->isEmpty()){
+          $_open_id = 0;
+          $_open_title = '';
+          $_open_nav_img = '';
+          $_open_summary = '';
+        }else{
+          $_open_id = $open[0]['id'];
+          $_open_title = $open[0]['title'];
+          $_open_nav_img = $open[0]['nav_img'];
+          $_open_summary = $open[0]['summary'];
+        }
+      ?>
+      <div class="cItem" >
+        <p class="title">信息公开 <a href="<?php echo url('info/open/list') ?>">更多</a></p>
+        <div class="itembox" >
+          <h4><a href="<?php echo url('info/open/detail',['id'=>$_open_id]) ?>"><?php echo strlen($_open_title) > 25 ? (mb_substr($_open_title,0,25) . '...') : $_open_title; ?></a></h4>
+          <div class="newslbox">
+            <img src="{$_open_nav_img}" />
+            <p><?php echo strlen($_open_summary) > 45 ? (mb_substr($_open_summary,0,45) . '...') : $_open_summary; ?><a href="<?php echo url('info/open/detail',['id'=>$_open_id]) ?>">【详情】</a></p>
+          </div>
+          <div class="line"></div>
+          <ul class = 'ul_s'>
+            <?php 
+              $count = 0;
+              foreach($open as $k=>$v){
+            ?>
+            <?php if ($k > 0 && $count <4){ ?>
+            <li>&bull;&nbsp;<a href="<?php echo url('info/open/detail',['id'=>$v['id']]) ?>"><?php echo strlen($v['title']) > 55 ? (mb_substr($v['title'],0,25) . '...') : $v['title']; ?></a></li>
+            <?php 
+              $count++;
+              } ?>
+            <?php } ?>
+          </ul>
+        </div>
+      </div>
+      <?php 
+         if($release->isEmpty()){
+          $_release_id = 0;
+          $_release_title = '';
+          $_release_nav_img = '';
+          $_release_summary = '';
+        }else{
+          $_release_id = $release[0]['id'];
+          $_release_title = $release[0]['title'];
+          $_release_nav_img = $release[0]['nav_img'];
+          $_release_summary = $release[0]['summary'];
+        }
+      ?>
+      <div class="cItem">
+        <p class="title">权威发布 <a href="<?php echo url('info/release/list') ?>">更多</a></p>
+        <div class="itembox">
+          <h4><a href="<?php echo url('info/release/detail',['id'=>$_release_id]) ?>"><?php echo strlen($_release_title) > 25 ? (mb_substr($_release_title,0,25) . '...') : $_release_title; ?></a></h4>
+          <div class="newslbox">
+            <img src="{$_release_nav_img}" />
+            <p><?php echo strlen($_release_summary) > 45 ? (mb_substr($_release_summary,0,45) . '...') : $_release_summary; ?> <a href="<?php echo url('info/release/detail',['id'=>$_release_id]) ?>">【详情】</a></p>
+          </div>
+          <div class="line"></div>
+          <ul>
+            <?php foreach($release as $k=>$v){ ?>
+            <?php if ($k > 0){ ?>
+            <li>&bull;&nbsp;<a href="<?php echo url('info/release/detail',['id'=>$v['id']]) ?>"><?php echo strlen($v['title']) > 55 ? (mb_substr($v['title'],0,25) . '...') : $v['title']; ?></a></li>
+            <?php } ?>
+            <?php } ?>
+          </ul>
+        </div>
+      </div>
+      <?php 
+         if($investment->isEmpty()){
+          $_investment_id = 0;
+          $_investment_title = '';
+          $_investment_nav_img = '';
+          $_investment_summary = '';
+        }else{
+          $_investment_id = $investment[0]['id'];
+          $_investment_title = $investment[0]['title'];
+          $_investment_nav_img = $investment[0]['nav_img'];
+          $_investment_summary = $investment[0]['summary'];
+        }
+      ?>
+      <div class="cItem" >
+        <p class="title">投资招商 <a href="<?php echo url('info/investment/list') ?>">更多</a></p>
+        <div class="itembox">
+          <h4><a href="<?php echo url('info/investment/detail',['id'=>$_investment_id]) ?>"><?php echo strlen($_investment_title) > 25 ? (mb_substr($_investment_title,0,25) . '...') : $_investment_title; ?></a></h4>
+          <div class="newslbox">
+            <img src="{$_investment_nav_img}" />
+            <p><?php echo strlen($_investment_summary) > 45 ? (mb_substr($_investment_summary,0,45) . '...') : $_investment_summary; ?> <a href="<?php echo url('info/investment/detail',['id'=>$_investment_id]) ?>">【详情】</a></p>
+          </div>
+          <div class="line"></div>
+          <ul>
+            <?php foreach($investment as $k=>$v){ ?>
+            <?php if ($k > 0){ ?>
+            <li>&bull;&nbsp;<a href="<?php echo url('info/investment/detail',['id'=>$v['id']]) ?>"><?php echo strlen($v['title']) > 55 ? (mb_substr($v['title'],0,25) . '...') : $v['title']; ?></a></li>
+            <?php } ?>
+            <?php } ?>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="c4">
+      <ul class="banul" >
+        <?php foreach($results as $k=>$v){ ?>
+        <li>
+          <img src="{$v['nav_img']}" alt="">
+          <a href="<?php echo url('info/results/detail',['id'=>$v['id']]) ?>">
+          {$v['summary']}
+          </a>
+        </li>
+        <?php } ?>
+      </ul>
+    </div>
+    <div class="c3">
+      <?php 
+         if($results->isEmpty()){
+          $_results_id = 0;
+          $_results_title = '';
+          $_results_nav_img = '';
+          $_results_summary = '';
+        }else{
+          $_results_id = $results[0]['id'];
+          $_results_title = $results[0]['title'];
+          $_results_nav_img = $results[0]['nav_img'];
+          $_results_summary = $results[0]['summary'];
+        }
+      ?>
+        <div class="cItem" >
+          <p class="title">成果展示 <a href="<?php echo url('info/results/list') ?>">更多</a></p>
+          <div class="itembox" >
+            <h4><a href="<?php echo url('info/results/detail',['id'=>$_results_id]) ?>"><?php echo strlen($_results_title) > 25 ? (mb_substr($_results_title,0,25) . '...') : $_results_title; ?></a></h4>
+            <div class="newslbox">
+              <img src="{$_results_nav_img}" />
+              <p><?php echo strlen($_results_summary) > 45 ? (mb_substr($_results_summary,0,45) . '...') : $_results_summary; ?> <a href="<?php echo url('info/results/detail',['id'=>$_results_id]) ?>">【详情】</a></p>
+            </div>
+            <div class="line"></div>
+            <ul>
+              <?php foreach($results as $k=>$v){ ?>
+              <?php if ($k > 0){ ?>
+              <li>&bull;&nbsp;<a href="<?php echo url('info/results/detail',['id'=>$v['id']]) ?>"><?php echo strlen($v['title']) > 55 ? (mb_substr($v['title'],0,25) . '...') : $v['title']; ?></a></li>
+              <?php } ?>
+              <?php } ?>
+            </ul>
+          </div>
+        </div>
+    </div>
+  </div>
+
+  {include file="common/footer" /}
+  <script>
+    $(document).ready(function () {
+      var banulWidth = 0;
+      $('.banul li').each(function () {
+        banulWidth = $(this).width() + 20
+      });
+      banulWidth -= 20;
+      var nav = 0;
+      var banTimer = setInterval(function () {
+        var k = $('.banul').position().left;
+        if (k <= -banulWidth) {
+          nav = 1
+        } else if (k >= 0 ) {
+          nav = 0
+        }
+        if (nav === 1) {
+          $('.banul').css('left', k+2 + 'px')
+        } else {
+          $('.banul').css('left', k-2 + 'px')
+        }
+      }, 100);
+
+    })
+  </script>

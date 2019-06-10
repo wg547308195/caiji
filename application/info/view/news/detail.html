@@ -1,0 +1,54 @@
+{include file="common/header" /}
+  <div class="content">
+    <div class="breadnav">
+      <ul>
+        <li>首页</li>
+        <li>新闻中心</li>
+        <li>新闻详情</li>
+      </ul>
+    </div>
+    <div class="detailbox">
+      <div class="detailtxt">
+        <h2>{$info['title']}</h2>
+        <p class="info">
+          <span>{$info['release_time']}</span>
+          <span>来源：{$info['source']}</span>
+        </p>
+        <div class="maintxt">
+          <?php echo html_entity_decode($info['content']); ?>
+        </div>
+      </div>
+      <div class="recommend">
+        <p class="boxtitle">热点推荐</p>
+        <ul>
+          <?php foreach($hot as $k=>$v){ ?>
+          <li>
+            <span>{$k+1}</span>
+            <a href="<?php echo url('info/news/detail',['id'=>$v['id']]) ?>">{$v['title']}</a>
+          </li>
+          <?php } ?>
+        </ul>
+      </div>
+    </div>
+    <div class="prenex">
+      <ul>
+        <li>
+          <span>上一篇：</span>
+          {if condition="$prev"}
+          <a href="<?php echo url('info/news/detail',['id'=>$prev['id']]) ?>">{$prev['title']}</a>
+          {else /}
+          <a href="javascript:;">暂时没有了~</a>
+          {/if}
+        </li>
+        <li>
+          <span>下一篇：</span>
+          {if condition="$next"}
+          <a href="<?php echo url('info/news/detail',['id'=>$next['id']]) ?>">{$next['title']}</a>
+          {else /}
+          <a href="javascript:;">暂时没有了~</a>
+          {/if}
+        </li>
+      </ul>
+    </div>
+  </div>
+  {include file="common/footer" /}

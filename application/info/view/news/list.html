@@ -1,0 +1,44 @@
+{include file="common/header" /}
+  <div class="content">
+    <div class="breadnav">
+      <ul>
+        <li>首页</li>
+        <li>新闻中心</li>
+      </ul>
+    </div>
+    <div class="sughead">
+      <div class="sugtext">
+        <h3><a href="<?php echo url('info/news/detail',['id'=>$recommend['id']]) ?>">{$recommend['title']}</a></h3>
+        <p>{$recommend['summary']}<a href="<?php echo url('info/news/detail',['id'=>$recommend['id']]) ?>">【详细】</a></p>
+      </div>
+      <a href="<?php echo url('info/news/detail',['id'=>$recommend['id']]) ?>">
+        <img src="{$recommend['nav_img']}" alt="">
+      </a>
+    </div>
+    <div class="newslist">
+      <ul>
+        <?php foreach($list as $info){ ?>
+        <li>
+          <div class="listtxt">
+            <div class="time">
+              <p class="md">{:date('m-d',strtotime($info['release_time']))}</p>
+              <p class="tl"></p>
+              <p class="y">{:date('Y',strtotime($info['release_time']))}</p>
+            </div>
+            <div class="txtcontent">
+              <h4><a href="<?php echo url('info/news/detail',['id'=>$info['id']]) ?>">{$info['title']}</a></h4>
+              <p>{$info['summary']} <a href="<?php echo url('info/news/detail',['id'=>$info['id']]) ?>">【详细】</a></p>
+            </div>
+          </div>
+          <a href="<?php echo url('info/news/detail',['id'=>$info['id']]) ?>">
+            <img src="{$info['nav_img']}" alt="">
+          </a>
+        </li>
+        <?php } ?>
+      </ul>
+      <div class="pagenav">
+        {$page|raw}
+      </div>
+    </div>
+  </div>
+  {include file="common/footer" /}

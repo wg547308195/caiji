@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>重庆海绵城市</title>
+  <link rel="stylesheet" href="/frontend/css/slick.css">
+  <link rel="stylesheet" href="/frontend/css/common.css" />
+  <script src="/frontend/js/jquery-3.3.1.min.js"></script>
+  <script src="/frontend/js/slick.min.js"></script>
+</head>
+<body>
+  <div class="banner">
+    <div class="slider">
+      <div class="item">
+          <a >
+            <img src="/frontend/images/outdoor.jpg" alt="">
+          </a>
+      </div>
+      <div class="item">
+          <a >
+            <img src="/frontend/images/outdoor.jpg" alt="">
+          </a>
+      </div>
+      <div class="item">
+          <a >
+            <img src="/frontend/images/outdoor.jpg" alt="">
+          </a>
+      </div>
+      <div class="item">
+          <a >
+            <img src="/frontend/images/outdoor.jpg" alt="">
+          </a>
+      </div>
+    </div>
+  </div>
+  <div class="navbar">
+    <div>
+        <ul>
+            <li {if request()->controller() == 'Index'}class="active"{/if}><a href="/info/index/index.html">首页</a></li>
+            <li {if request()->controller() == 'News'}class="active"{/if}><a href="/info/news/list.html">新闻中心</a></li>
+            <li {if request()->controller() == 'Policy'}class="active"{/if}><a href="/info/policy/list.html">政策动态</a></li>
+            <li {if request()->controller() == 'Open'}class="active"{/if}><a href="/info/open/list.html">信息公开</a></li>
+            <li {if request()->controller() == 'Release'}class="active"{/if}><a href="/info/release/list.html">权威发布</a></li>
+            <li {if request()->controller() == 'Results'}class="active"{/if}><a href="/info/results/list.html">成果展示</a></li>
+            <li {if request()->controller() == 'Investment'}class="active"{/if}><a href="/info/investment/list.html">投资招商</a></li>
+            <li {if request()->controller() == 'Supervise'}class="active"{/if}><a href="/info/supervise/list.html">建议监督</a></li>
+        </ul>
+        <form class="inputbox" style="display: none">
+            <input type="text">
+            <img src="/frontend/images/search_icon.png"/>
+        </form>
+    </div>
+  </div>

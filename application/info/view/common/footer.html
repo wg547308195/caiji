@@ -1,0 +1,54 @@
+  <div class="copyright">
+    <div class="links">
+      <ul>
+        <li><h4>友情连接</h4></li>
+        <?php foreach($links as $link){ ?>
+        <li><a href="{$link['link']}" target="__blank">{$link['name']}</a></li>
+        <?php } ?>
+      </ul>
+    </div>
+    <div class="info">
+      <ul>
+        <li>重庆秀山海绵城市网</li>
+        <li><a href="">关于本网</a></li>
+        <li><a href="">网站声明</a></li>
+        <li><a href="">网站地图</a></li>
+        <li><a href="">联系我们</a></li>
+        <li><a href="">网站纠错</a></li>
+      </ul>
+      <p>版权所有：重庆秀山海绵城市</p>
+      <ul>
+        <li>网站标识码bm01000001</li>
+        <li>京ICP备05070218号</li>
+        <li>京公网安备1101202000001号</li>
+      </ul>
+    </div>
+  </div>
+  <script>
+  $(document).ready(function () {
+    $('.banner .slider, .newsImgbox .slider').slick({
+      dots: true,
+      arrows: false,
+      autoplay: true,
+      slidesToShow: 1,
+      autoplaySpeed: 5000,
+      pauseOnHover: false,
+      lazyLoad: 'ondemand',
+    });
+    $('.banner .slider [rel*="animated"]').css('opacity', 0);
+    $('.banner .slider').on('beforeChange', function (event, slick, currentSlide, nextSlide) {
+      $('.banner .slider .slick-current').find('[rel*="animated"]').each(function () {
+        var _class = $(this).attr('rel');
+        $(this).removeClass(_class);
+      });
+    });
+    $('.banner .slider').on('afterChange', function (event, slick, currentSlide) {
+      $('.banner .slider .slick-current').find('[rel*="animated"]').each(function () {
+        var _class = $(this).attr('rel');
+        $(this).addClass(_class);
+      });
+    });
+  })
+  </script>
+</body>
+</html>
