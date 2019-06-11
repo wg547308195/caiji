@@ -1,5 +1,5 @@
 <?php
-namespace app\api\controller;
+namespace app\api;
 use think\exception\HttpResponseException;
 use think\facade\Request;
 use think\facade\Response;

@@ -1,10 +1,10 @@
 <?php
-namespace app\api\controller\v1;
-use app\api\controller\Api;
+namespace app\api\controller;
+use app\api\Api;
 class Init extends Api
 {
     protected $checkaccess = true;
-    protected $no_check_action = ['login'];
+    protected $no_check_action = ['login','get_message'];
     protected $admin = [];
     protected $user_id = 0;
     protected $user_name = '';

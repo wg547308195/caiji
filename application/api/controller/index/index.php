@@ -1,6 +1,6 @@
 <?php
-namespace app\api\controller\v1\info;
-use app\api\controller\v1\Init;
+namespace app\api\controller\index;
+use app\api\controller\Init;
 
 class Index extends Init
 {
