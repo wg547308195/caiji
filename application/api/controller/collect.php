@@ -14,12 +14,10 @@ class collect extends Init
     
     public function get_message()
     {
-        
-        $url = 'http://hmcs.sidwit.com/mainPage/project_list';
-        $result = model('collect/collect','service')->get_message($url);
 
-        //echo('<div style="color:green">finish</div>');
-         if (!$result){
+        $url = $this->request->post('url','');
+        $result = model('collect/collect','service')->get_message($url);
+        if (!$result){
             return $this->response($this->service->getError(), [], -400105);
         }
         return $this->response("success", $result);

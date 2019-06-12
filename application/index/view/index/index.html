@@ -1,34 +1,93 @@
 <!DOCTYPE html>
 <html>
-<!-- <script type="text/javascript" src="https://tajs.qq.com/stats?sId=64890268" charset="UTF-8"></script>
-<script type="text/javascript" src="https://e.topthink.com/Public/static/client.js"></script> -->
-<!-- <think id="eab4b9f840753f8e7"></think> -->
-<head>
-	<title>PHP采集</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title>网站图片采集</title>
+	<link rel="stylesheet" href="../layui/css/layui.css">
+	<link rel="stylesheet" href="../layui/css/css.css">
+	<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
 </head>
-<body>
-	<div>
-		<span>
-			<input type="text" name="url">
-			<input type="button" name="btn_url" value="网址">
-		</span>
-	</div>
-	<div style="padding: 24px 48px;"> 
-		<h1>:) </h1>
-		<p> ThinkPHP V5.1<br/>
-			<span style="font-size:30px">12载初心不改（2006-2018） - 你值得信赖的PHP框架</span>
-		</p>
-	</div>
+    <body>
 
-</body>
-<style type="text/css">*{ padding: 0; margin: 0; } div{ padding: 4px 48px;} a{color:#2E5CD5;cursor: pointer;text-decoration: none} a:hover{text-decoration:underline; } body{ background: #fff; font-family: "Century Gothic","Microsoft yahei"; color: #333;font-size:18px;} h1{ font-size: 100px; font-weight: normal; margin-bottom: 12px; } p{ line-height: 1.6em; font-size: 42px }</style>
+    	<div class="layui-row">
+		    <div class="layui-col-xs12 layui-col-md8">
+		      	<div style="padding: 100px 100px 10px;"  >
+					<span calss="le">你可以直接选择下列网站</span>
+					<div class="layui-btn-container">
+						<button type="button" class="layui-btn" id="baidu" value="https://www.baidu.com/">百度</button>
+						<button type="button" class="layui-btn" id="tengxun" value="https://www.qq.com/">腾讯</button>
+						<button type="button" class="layui-btn" id="ali" value="https://www.1688.com/">阿里巴巴</button>
+						<button type="button" class="layui-btn" id="youku" value="https://www.youku.com/">优酷</button>
+					</div>
+				</div>
+				<div style="padding: 100px 100px 10px;">
+					<span>你也可以输入你要采集的网站</span>
+				    <form class="bs-example bs-example-form" role="form">
+				        <div class="row">
+				            <div class="col-lg-6">
+				                <div class="input-group">
+				                    <button class="layui-btn layui-btn-sm" autocomplete="off" type="button" id="btn_go" name="btn_go">Go!</button>
+				                    <input type="text" class="layui-input" id = "url">
+				                </div><!-- /input-group -->
+				            </div><!-- /.col-lg-6 -->
+				    </form>
+		    </div>
+		    <div class="layui-col-xs6 layui-col-md4">
+		    	<div style="padding: 100px 100px 10px; ">
+			      	<span>采集结果：</span>
+		 			<a id="links" href="" target="_blank"><p class="res" id="res"></p></a>
+		 		</div>	
+		    </div>
+	  </div>
+   </body>
 </html>
+<script>
+	    $(function(){
+	        $("#btn_go").click(function(){
+	            var str_url= document.getElementById("url").value;
+	            get_url(str_url);
+	        });
+
+	        $("#baidu").click(function(){
+	            var str_url= document.getElementById("baidu").value;
+	            get_url(str_url);
+	        });
+	        $("#tengxun").click(function(){
+	            var str_url= document.getElementById("tengxun").value;
+	            get_url(str_url);
+	        });
+
+	        $("#ali").click(function(){
+	            var str_url= document.getElementById("ali").value;
+	            get_url(str_url);
+	        });
+ 			$("#youku").click(function(){
+	            var str_url= document.getElementById("youku").value;
+	            get_url(str_url);
+	        });
+	        function get_url(str_url)
+	        {	
+	        	$.ajax({ 
+					type: "POST", 
+					data: "url="+str_url,
+					dataType: "JSON", 
+					async: false, 
+					url: "/api/collect/get_message",
+					success: function(res) {
+						if (res.code == '200') {
+							document.getElementById("links").href = res.result;
+							document.getElementById("res").innerText = '采集图片文本地址';
+						} else {
+							document.getElementById("links").href = '';
+						 	document.getElementById("res").innerText = '采集失败';
+						}
+					}
+				});
+
+
+	        }
 
 
 
-
-
-
-
-
-
+	    });  
+	</script>

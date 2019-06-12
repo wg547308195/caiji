@@ -10,13 +10,13 @@ class Index extends Controller
     	
 
 
-    	$url = '../public/images/url_images.txt';
-        $this->service = model('collect/collect','service');
-        $result = $this->service->get_message($url);
-        if(!$result){
-            echo $this->service->getError();die;
-        }
- echo "string";die;
+ //    	$url = '../public/images/url_images.txt';
+ //        $this->service = model('collect/collect','service');
+ //        $result = $this->service->get_message($url);
+ //        if(!$result){
+ //            echo $this->service->getError();die;
+ //        }
+ // echo "string";die;
         // 模板输出
         return $this->fetch('index');
     }

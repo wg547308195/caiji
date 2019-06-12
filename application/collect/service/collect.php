@@ -10,10 +10,10 @@ class collect extends Service
        
     }
 
-    public function get_message($file = '')
+    public function get_message($url = '')
     {
       try {
-          $url = 'http://mfhmcs.sidwit.com/';
+            //$url = 'https://www.baidu.com/';
           $opts = array(
             'http'=>array(
               'method'=>"GET",
@@ -32,11 +32,10 @@ class collect extends Service
             //<img > 标签的正则
             $reg = '/<img((?!src).)*src[\s]*=[\s]*[\'"](?<src>[^\'"]*)[\'"]/i';
             $res = preg_match_all($reg,$result,$matchAll);
-            //print_r($matchAll);die;
             $result = $this->w_file('../public/images/w/','',$matchAll['src'], $url);
 
       } catch (\Exception $e) {
-            $this->error = $e->get_message();
+            $this->error = $e->getMessage();
             return false;
       }
         return $result;
@@ -61,14 +60,15 @@ class collect extends Service
             if(empty($value)){
                 continue;
             }
-            if(!strstr($value, 'www') && !strstr($value, 'http')){
-                $value = $url.$value;
-            }
+            // if(!strstr($value, 'www.') && !strstr($value, 'http://') && !strstr($value, 'https://')){
+            //     $value = $url.$value;
+            // }
             //图片的后缀名需要的在添加
             fwrite($file, $value."\r\n");
         }
         fclose($file);
-        return $_SERVER['SERVER_NAME'].'/'. str_replace('../public', '', $dir) .'/'.$file_name;
+        //return $_SERVER['SERVER_NAME'].'/'. str_replace('../public', '', $dir) .'/'.$file_name;
+        return  str_replace('../public', '', $dir) .'/'.$file_name;
     }
 
 }
